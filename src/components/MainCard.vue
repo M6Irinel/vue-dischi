@@ -23,12 +23,23 @@ export default {
         inputSearch: {
             type: String,
             default: ''
+        },
+        selectAuthor: {
+            type: String,
+            default: ''
         }
     },
     computed: {
         searchArtist () {
+            return this.selectArtist.filter( e => {
+                if ( e.genre.toLowerCase().includes( this.inputSearch.toLowerCase() ) )
+                    return true;
+                return false;
+            } );
+        },
+        selectArtist () {
             return this.music.filter( e => {
-                if ( e.genre.toLowerCase().includes( this.inputSearch.toLowerCase() ) ) return true;
+                if ( e.author.toLowerCase().includes( this.selectAuthor.toLowerCase() ) ) return true;
                 return false;
             } );
         }
@@ -40,7 +51,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
 .container {
-    margin-top: 5rem;
+    margin-top: 4rem;
     padding: 3rem 5rem;
 
     .row {
@@ -94,6 +105,38 @@ export default {
                 margin-top: -8px;
                 font-family: 'Lato', sans-serif;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        margin-top: 4rem;
+        padding: 1rem 2rem;
+
+        .row {
+            gap: 20px 20px;
+            margin: 0 auto;
+        }
+
+        .my-col {
+            flex-basis: calc((100% - 20px * 3) / 4);
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        .my-col {
+            flex-basis: calc((100% - 20px * 2) / 3);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        .my-col {
+            flex-basis: calc((100% - 20px * 1) / 2);
         }
     }
 }

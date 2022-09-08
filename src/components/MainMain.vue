@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MainHeader @search="saveSearch" />
-    <MainCard :inputSearch="inputSearch" :music="music" />
+    <MainHeader :music="music" @search="saveSearch" @author="saveAuthor" />
+    <MainCard :inputSearch="inputSearch" :selectAuthor="selectAuthor" :music="music" />
   </div>
 </template>
 
@@ -19,12 +19,16 @@ export default {
   data () {
     return {
       music: [],
-      inputSearch: ''
+      inputSearch: '',
+      selectAuthor: ''
     }
   },
   methods: {
     saveSearch ( data ) {
       this.inputSearch = data;
+    },
+    saveAuthor ( data ) {
+      this.selectAuthor = data;
     }
   },
   created () {
