@@ -31,19 +31,28 @@ export default {
     },
     computed: {
         searchArtist () {
-            return this.selectArtist.filter( e => {
-                if ( e.genre.toLowerCase().includes( this.inputSearch.toLowerCase() ) )
-                    return true;
-                return false;
-            } );
-        },
-        selectArtist () {
-            return this.music.filter( e => {
-                if ( e.author.toLowerCase().includes( this.selectAuthor.toLowerCase() ) ) return true;
-                return false;
-            } );
+            let genre = this.music;
+
+            if ( this.inputSearch !== '' ) {
+                genre = genre.filter( e => {
+                    if ( e.genre.toLowerCase().includes( this.inputSearch.toLowerCase() ) )
+                        return true;
+
+                    return false;
+                } );
+            }
+
+            if ( this.selectAuthor !== '' )
+                genre = genre.filter( e => {
+                    if ( e.author.toLowerCase().includes( this.selectAuthor.toLowerCase() ) )
+                        return true;
+                        
+                    return false;
+                } );
+
+            return genre;
         }
-    }
+    },
 }
 </script>
 
