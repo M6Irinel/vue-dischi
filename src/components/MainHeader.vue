@@ -9,7 +9,7 @@
             <div class="searchCards">
                 <select v-model="genre" @click="$emit('genre', genre )">
                     <option value="">--Schegli il genere--</option>
-                    <option v-for="(el, i) in music" :key="i" :value="el.genre"> {{el.genre}} </option>
+                    <option v-for="(el, i) in removeDuplicate" :key="i" :value="el"> {{el}} </option>
                 </select>
 
                 <select v-model="author" @click="$emit('author', author )">
@@ -31,6 +31,15 @@ export default {
         return {
             genre: '',
             author: ''
+        }
+    },
+    computed: {
+        removeDuplicate () {
+            let genre = this.music.map(e=>e.genre);
+            let uniqueGenre = genre.filter( ( c, index ) => {
+                return genre.indexOf( c ) === index;
+            } );
+            return uniqueGenre;
         }
     }
 }
