@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MainMain from './components/MainMain.vue'
+import MainMain from './components/MainMain.vue';
 
 export default {
   name: 'App',
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
-    background-color: #1e2d3b;
-  }
+body {
+  background-color: #1e2d3b !important;
+}
 </style>

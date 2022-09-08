@@ -1,8 +1,10 @@
 <template>
     <div class="container">
         <div class="flex row">
-            <div v-for="(el, i) in music" :key="i" class="my-col">
-                <img :src="el.poster" :alt="el.author">
+            <div v-for="(el, i) in searchArtist" :key="i" class="my-col">
+                <div class="img">
+                    <img :src="el.poster" :alt="el.author">
+                </div>
                 <h2> {{el.title}} </h2>
                 <div class="author">
                     <h3> {{el.author}} </h3>
@@ -17,7 +19,19 @@
 export default {
     name: 'MianCard',
     props: {
-        music: Array
+        music: Array,
+        inputSearch: {
+            type: String,
+            default: ''
+        }
+    },
+    computed: {
+        searchArtist () {
+            return this.music.filter( e => {
+                if ( e.genre.toLowerCase().includes( this.inputSearch.toLowerCase() ) ) return true;
+                return false;
+            } );
+        }
     }
 }
 </script>
@@ -40,7 +54,7 @@ export default {
         padding: 15px;
         text-align: center;
         transition: transform 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-        
+
         &:hover {
             transform: scale(1.05);
             border-radius: 5px;
@@ -49,24 +63,29 @@ export default {
                 transform: scale(1.05);
             }
         }
-        
+
         img {
             transition: transform 0.2s ease-in-out;
             width: 100%;
         }
-        
+
+        .img {
+            aspect-ratio: 1;
+        }
+
         h2 {
             color: #fff;
             text-transform: uppercase;
             font-size: 1.5rem;
             padding-top: 15px;
         }
-        
+
         .author {
             padding-top: 10px;
             margin-bottom: -5px;
 
-            h3, h4 {
+            h3,
+            h4 {
                 color: #897f78;
                 font-size: 1rem;
             }
