@@ -5,7 +5,9 @@
                 <div class="img">
                     <img :src="el.poster" :alt="el.author">
                 </div>
+
                 <h2> {{el.title}} </h2>
+
                 <div class="author">
                     <h3> {{el.author}} </h3>
                     <h4> {{el.year}} </h4>
@@ -15,20 +17,25 @@
     </div>
 </template>
 
+
 <script>
 export default {
     name: 'MianCard',
+
     props: {
         music: Array,
+
         inputSearch: {
             type: String,
             default: ''
         },
+
         selectAuthor: {
             type: String,
             default: ''
         }
     },
+
     computed: {
         searchArtist () {
             let genre = this.music;
@@ -55,6 +62,7 @@ export default {
     },
 }
 </script>
+
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');

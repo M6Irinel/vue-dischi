@@ -4,16 +4,19 @@
   </div>
 </template>
 
+
 <script>
 import MainMain from './components/MainMain.vue';
 
 export default {
   name: 'App',
+
   components: {
     MainMain
   }
 }
 </script>
+
 
 <style lang="scss">
 body {

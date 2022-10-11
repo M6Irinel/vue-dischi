@@ -21,31 +21,41 @@
     </header>
 </template>
 
+
 <script>
 export default {
     name: 'MainHeader',
+
     props: {
         music: Array
     },
+
     data () {
         return {
             genre: '',
             author: ''
         }
     },
+
     methods: {
         resetAuthor () {
             this.author = '';
         }
     },
+
     computed: {
         removeDuplicate () {
             let genre = this.music.map( e => e.genre );
-            let uniqueGenre = genre.filter( ( c, index ) => {
-                return genre.indexOf( c ) === index;
+            let e = 1;
+
+            let uniqueGenre = genre.filter( ( el, i ) => {
+                console.log(e++);
+                return genre.indexOf( el ) === i;
             } );
+
             return uniqueGenre;
         },
+
         artistUnique () {
             return this.music.filter( el => {
                 return el.genre === this.genre;
@@ -54,6 +64,7 @@ export default {
     }
 }
 </script>
+
 
 <style lang="scss">
 header {

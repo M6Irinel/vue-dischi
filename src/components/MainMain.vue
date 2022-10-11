@@ -5,6 +5,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 import MainCard from './MainCard.vue';
@@ -16,6 +17,7 @@ export default {
     MainCard,
     MainHeader
   },
+
   data () {
     return {
       music: [],
@@ -23,14 +25,17 @@ export default {
       selectAuthor: ''
     }
   },
+
   methods: {
     saveGenre ( data ) {
       this.inputSearch = data;
     },
+
     saveAuthor ( data ) {
       this.selectAuthor = data;
     }
   },
+
   created () {
     axios.get( 'https://flynn.boolean.careers/exercises/api/array/music' )
       .then( r => this.music = r.data.response );
